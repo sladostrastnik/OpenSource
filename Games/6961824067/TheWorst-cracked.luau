@@ -27,7 +27,7 @@ request = hook("request", function(...)
                     if Value == "https://raw.githubusercontent.com/m1kp0/ftap/refs/heads/main/m1kp/ver.txt" then
                         return SpoofResult('return "♥ Сладострастие ♥"')
                     elseif Value == "https://raw.githubusercontent.com/m1kp0/FTAP/refs/heads/main/m1kp/whitelist.lua" then
-                        return SpoofResult(('return {[UserId] = "HWID"}'):gsub('UserId', LocalPlayer.UserId):gsub('HWID', HWID))
+                        return SpoofResult(('return {[%s] = "%s"}'):format(LocalPlayer.UserId, HWID))
                     end
                 end
             end
