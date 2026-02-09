@@ -3915,7 +3915,6 @@ local TryProcess = false
 local TMass = 0
 local timer = 0
 local msgCount = 0
-local ChatBox = game:GetService("CoreGui"):WaitForChild("ExperienceChat"):WaitForChild("appLayout"):WaitForChild("chatInputBar"):WaitForChild("Background"):WaitForChild("Container"):WaitForChild("TextContainer"):WaitForChild("TextBoxContainer"):WaitForChild("TextBox")
 w.FallenPartsDestroyHeight = "nan"
 
 local function FWC(Parent,Name,Time) return Parent:FindFirstChild(Name) or Parent:WaitForChild(Name,Time) end
@@ -6438,25 +6437,25 @@ local Section = Tab:CreateSection("Lag")
 		end,
 	})
 
-UIS.InputBegan:Connect(function(input)
+UIS.InputBegan:Connect(function(input, chatting)
+    if chatting then return end
+
 	if input.KeyCode == Enum.KeyCode.Space then
 		local char = me.Character
 		local hum = char.Humanoid
-		if hum.SeatPart and hum.Ragdolled.Value and ChatBox.TextTransparency ~= 0 and (game.CoreGui:FindFirstChild("HUI") and not(game.CoreGui.HUI.Rayfield.Drag.Interact.Visible) or not(game.CoreGui.Rayfield.Drag.Interact.Visible)) then
+		if hum.SeatPart and hum.Ragdolled.Value and (game.CoreGui:FindFirstChild("HUI") and not(game.CoreGui.HUI.Rayfield.Drag.Interact.Visible) or not(game.CoreGui.Rayfield.Drag.Interact.Visible)) then
 			hum.Sit = false
 		end
 	elseif input.KeyCode == Enum.KeyCode.LeftShift and ShiftSpeed then
 		local char = me.Character
 		local hum = char.Humanoid
-		if ChatBox.TextTransparency ~= 0 then
-			if not char.BobbingAndCrouch.Disabled then char.BobbingAndCrouch.Disabled = true end
-			if hum.WalkSpeed ~= ShiftValue then
-				hum.WalkSpeed = ShiftValue
-			else
-				hum.WalkSpeed = 16
-			end
-			char.BobbingAndCrouch.Disabled = false
-		end
+        if not char.BobbingAndCrouch.Disabled then char.BobbingAndCrouch.Disabled = true end
+        if hum.WalkSpeed ~= ShiftValue then
+            hum.WalkSpeed = ShiftValue
+        else
+            hum.WalkSpeed = 16
+        end
+        char.BobbingAndCrouch.Disabled = false
 	elseif input.KeyCode == Enum.KeyCode.F1 then
 		local char = me.Character
 		local hum = char.Humanoid
@@ -6469,7 +6468,7 @@ UIS.InputBegan:Connect(function(input)
 	elseif input.KeyCode == Enum.KeyCode.LeftControl then
 		local char = me.Character
 		local hum = char.Humanoid
-		if not hum.SeatPart and ChatBox.TextTransparency ~= 0 and not(me.Character:FindFirstChild("Left Leg") and me.Character:FindFirstChild("Right Leg")) then
+		if not hum.SeatPart and not(me.Character:FindFirstChild("Left Leg") and me.Character:FindFirstChild("Right Leg")) then
 			NoLegSit = not(NoLegSit)
 			if NoLegSit and (game.CoreGui:FindFirstChild("HUI") and not(game.CoreGui.HUI.Rayfield.Drag.Interact.Visible) or not(game.CoreGui.Rayfield.Drag.Interact.Visible)) then
 				me.Character.Humanoid.HipHeight = 0
