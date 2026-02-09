@@ -3408,10 +3408,10 @@ return(function(...)local A={"\098\072\090\122\104\113\103\077\083\080\056\110\1
 
 local _readfile = readfile
 readfile = hook("readfile", function(...)
-    local arg = ({...})[1]
-    if spoofed[url] then
-        warn("[The-Worst-Crack]: spoofing cache:" .. url)
-        return spoofed[url]
+    local file = ({...})[1]
+    if spoofed[file] then
+        warn("[The-Worst-Crack]: spoofing cache: " .. file)
+        return spoofed[file]
     end
     return _readfile(...)
 end)
@@ -3422,7 +3422,7 @@ request = hook("request", function(...)
         if typeof(arg) == "table" then
             for _, url in arg do
                 if spoofed[url] then
-                    warn("[The-Worst-Crack]: spoofing url:" .. url)
+                    warn("[The-Worst-Crack]: spoofing url: " .. url)
                     if url == "https://raw.githubusercontent.com/m1kp0/BetterOrion/refs/heads/main/Icons.lua" then
                         print('reset')
                         hook("request", _request)
