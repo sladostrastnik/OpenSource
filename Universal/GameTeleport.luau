@@ -20,11 +20,9 @@ return function(...)
     local PlaceId, JobId
 
     if #Arguments > 0 then
-        local Argument1 = Arguments[1]
-
-        if typeof(Argument1) == "string" then
-            PlaceId, JobId = string.match(JoinLink, "#/rg%-join/(%d+)/([%w%-]+)")
-        elseif typeof(Argument1) == "number" then
+        if typeof(Arguments[1]) == "string" then
+            PlaceId, JobId = string.match(Arguments[1], "#/rg%-join/(%d+)/([%w%-]+)")
+        elseif typeof(Arguments[1]) == "number" then
             PlaceId, JobId = Arguments[1], Arguments[2]
         end
     else
