@@ -1,5 +1,5 @@
 --[[ USAGE:
-local GameTeleport = loadstring(game:HttpGet("https://raw.githubusercontent.com/sladostrastnik/OpenSource/refs/heads/main/Universal/GameTeleport.luau"), true)
+local GameTeleport = loadstring(game:HttpGet("https://raw.githubusercontent.com/sladostrastnik/OpenSource/refs/heads/main/Universal/GameTeleport.luau"), true)()
 
 1. Rejoin
 GameTeleport()
